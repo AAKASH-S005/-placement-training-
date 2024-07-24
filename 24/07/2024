@@ -1,0 +1,1089 @@
+Print a pattern of numbers from 1 to n as shown below. Each of the numbers is separated by a single space.
+
+CODE :
+
+#include <stdio.h>
+
+int main() {
+    int n;
+    printf("Enter the value of n: ");
+    scanf("%d", &n);
+    
+    int matrix[2*n-1][2*n-1];
+    int i, j;
+    
+    // Filling the matrix
+    for (i = 0; i < 2*n - 1; i++) {
+        for (j = 0; j < 2*n - 1; j++) {
+            // Determine the minimum distance to the nearest boundary
+            int minDist = i < 2*n - 1 - i ? i : 2*n - 1 - i - 1;
+            minDist = minDist < j ? minDist : j;
+            minDist = minDist < 2*n - 1 - j - 1 ? minDist : 2*n - 1 - j - 1;
+            
+            // Fill the cell with n - minDist
+            matrix[i][j] = n - minDist;
+        }
+    }
+    
+    // Printing the matrix
+    for (i = 0; i < 2*n - 1; i++) {
+        for (j = 0; j < 2*n - 1; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Print the sum and difference of both integers separated by a space on the first line, and the sum and difference of both float (scaled to  decimal place) separated by a space on the second line.
+
+CODE :
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main()
+{
+	int int1, int2;
+    float float1, float2;
+
+    // Input two integers
+    printf("Enter two integers separated by space: ");
+    scanf("%d %d", &int1, &int2);
+
+    // Input two floats
+    printf("Enter two floats separated by space: ");
+    scanf("%f %f", &float1, &float2);
+
+    // Calculate sums and differences
+    int sum_int = int1 + int2;
+    int diff_int = int1 - int2;
+    float sum_float = float1 + float2;
+    float diff_float = float1 - float2;
+
+    // Print results
+    printf("Sum and Difference of integers: %d %d\n", sum_int, diff_int);
+    printf("Sum and Difference of floats (scaled to 1 decimal place): %.1f %.1f\n", sum_float, diff_float);
+
+    
+    return 0;
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+This challenge will help you learn the concept of recursion.
+
+A function that calls itself is known as a recursive function. The C programming language supports recursion. But while using recursion, one needs to be careful to define an exit condition from the function, otherwise it will go into an infinite loop.
+
+To prevent infinite recursion,  statement (or similar approach) can be used where one branch makes the recursive call and other doesn't.
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+//Complete the following function.
+
+int find_nth_term(int n, int a, int b, int c) {
+    if (n == 1) {
+        return a;
+    } else if (n == 2) {
+        return b;
+    } else if (n == 3) {
+        return c;
+    } else {
+        // Using recursion to calculate the nth term
+        return find_nth_term(n-1, a, b, c) + find_nth_term(n-2, a, b, c) + find_nth_term(n-3, a, b, c);
+    }
+}
+
+int main() {
+    int n, a, b, c;
+  
+    scanf("%d %d %d %d", &n, &a, &b, &c);
+    int ans = find_nth_term(n, a, b, c);
+ 
+    printf("%d", ans); 
+    return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+You are transporting some boxes through a tunnel, where each box is a parallelepiped, and is characterized by its length, width and height.
+
+The height of the tunnel  feet and the width can be assumed to be infinite. A box can be carried through the tunnel only if its height is strictly less than the tunnel's height. Find the volume of each box that can be successfully transported to the other end of the tunnel. Note: Boxes cannot be rotated.
+
+CODE :
+
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX_HEIGHT 41
+
+struct box
+{
+	/**
+	* Define three fields of type int: length, width and height
+	*/
+};
+
+typedef struct box box;
+
+int get_volume(box b) {
+	/**
+	* Return the volume of the box
+	*/
+}
+
+int is_lower_than_max_height(box b) {
+	/**
+	* Return 1 if the box's height is lower than MAX_HEIGHT and 0 otherwise
+	*/
+}
+
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	box *boxes = malloc(n * sizeof(box));
+	for (int i = 0; i < n; i++) {
+		scanf("%d%d%d", &boxes[i].length, &boxes[i].width, &boxes[i].height);
+	}
+	for (int i = 0; i < n; i++) {
+		if (is_lower_than_max_height(boxes[i])) {
+			printf("%d\n", get_volume(boxes[i]));
+		}
+	}
+	return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+You are given  triangles, specifically, their sides ,  and . Print them in the same style but sorted by their areas from the smallest one to the largest one. It is guaranteed that all the areas are different.
+
+CODE :
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+struct triangle
+{
+	int a;
+	int b;
+	int c;
+};
+
+typedef struct triangle triangle;
+void sort_by_area(triangle* tr, int n) {
+	/**
+	* Sort an array a of the length n
+	*/
+}
+
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	triangle *tr = malloc(n * sizeof(triangle));
+	for (int i = 0; i < n; i++) {
+		scanf("%d%d%d", &tr[i].a, &tr[i].b, &tr[i].c);
+	}
+	sort_by_area(tr, n);
+	for (int i = 0; i < n; i++) {
+		printf("%d %d %d\n", tr[i].a, tr[i].b, tr[i].c);
+	}
+	return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+In this challenge, you will learn the usage of the for loop, which is a programming language statement which allows code to be executed until a terminal condition is met. They can even repeat forever if the terminal condition is never met.
+
+CODE :
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() 
+{
+    int a, b;
+    scanf("%d\n%d", &a, &b);
+    
+    // Loop through numbers from a to b (inclusive) and print each number
+    for (int i = a; i <= b; i++) {
+        if (i == 1) {
+            printf("one\n");
+        } else if (i == 2) {
+            printf("two\n");
+        } else if (i == 3) {
+            printf("three\n");
+        } else if (i == 4) {
+            printf("four\n");
+        } else if (i == 5) {
+            printf("five\n");
+        } else if (i == 6) {
+            printf("six\n");
+        } else if (i == 7) {
+            printf("seven\n");
+        } else if (i == 8) {
+            printf("eight\n");
+        } else if (i == 9) {
+            printf("nine\n");
+        } else {
+            if (i % 2 == 0) {
+                printf("even\n");
+            } else {
+                printf("odd\n");
+            }
+        }
+    }
+
+    return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+You are given an array of integers, , denoting the marks scored by students in a class.
+
+The alternating elements , ,  and so on denote the marks of boys.
+Similarly, , ,  and so on denote the marks of girls.
+The array name, , works as a pointer which stores the base address of that array. In other words,  contains the address where  is stored in the memory.
+
+For example, let  and  stores 0x7fff9575c05f. Then, 0x7fff9575c05f is the memory address of.
+
+CODE :
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+//Complete the following function.
+
+int marks_summation(int* marks, int number_of_students, char gender) {
+  //Write your code here.
+}
+int main() {
+    int number_of_students;
+    char gender;
+    int sum;
+  
+    scanf("%d", &number_of_students);
+    int *marks = (int *) malloc(number_of_students * sizeof (int));
+ 
+    for (int student = 0; student < number_of_students; student++) {
+        scanf("%d", (marks + student));
+    }
+    
+    scanf(" %c", &gender);
+    sum = marks_summation(marks, number_of_students, gender);
+    printf("%d", sum);
+    free(marks);
+ 
+    return 0;
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+if and else are two of the most frequently used conditionals in C/C++, and they enable you to execute zero or one conditional statement among many such dependent conditional statements. We use them in the following ways:
+
+CODE :
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char* readline();
+
+int main() {
+    char* n_endptr;
+    char* n_str = readline();
+    int n = strtol(n_str, &n_endptr, 10);
+
+    if (n_endptr == n_str || *n_endptr != '\0') {
+        exit(EXIT_FAILURE);
+    }
+
+    if (n >= 1 && n <= 9) {
+        // Print the corresponding English word
+        if (n == 1) {
+            printf("one");
+        } else if (n == 2) {
+            printf("two");
+        } else if (n == 3) {
+            printf("three");
+        } else if (n == 4) {
+            printf("four");
+        } else if (n == 5) {
+            printf("five");
+        } else if (n == 6) {
+            printf("six");
+        } else if (n == 7) {
+            printf("seven");
+        } else if (n == 8) {
+            printf("eight");
+        } else if (n == 9) {
+            printf("nine");
+        }
+    } else if (n > 9) {
+        // Print "Greater than 9" if n is greater than 9
+        printf("Greater than 9");
+    }
+
+    return 0;
+}
+
+char* readline() {
+    size_t alloc_length = 1024;
+    size_t data_length = 0;
+    char* data = malloc(alloc_length);
+
+    while (1) {
+        char* cursor = data + data_length;
+        char* line = fgets(cursor, alloc_length - data_length, stdin);
+
+        if (!line) break;
+
+        data_length += strlen(cursor);
+
+        if (data_length < alloc_length - 1 || data[data_length - 1] == '\n') break;
+
+        size_t new_length = alloc_length << 1;
+        data = realloc(data, new_length);
+
+        if (!data) break;
+
+        alloc_length = new_length;
+    }
+
+    if (data[data_length - 1] == '\n') {
+        data[data_length - 1] = '\0';
+    }
+
+    data = realloc(data, data_length);
+
+    return data;
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Print a pattern of numbers from 1 to n as shown below. Each of the numbers is separated by a single space.
+
+CODE :
+
+#include <stdio.h>
+
+int main() {
+    int n;
+    printf("Enter the value of n: ");
+    scanf("%d", &n);
+    
+    int matrix[2*n-1][2*n-1];
+    int i, j;
+    
+    // Filling the matrix
+    for (i = 0; i < 2*n - 1; i++) {
+        for (j = 0; j < 2*n - 1; j++) {
+            // Determine the minimum distance to the nearest boundary
+            int minDist = i < 2*n - 1 - i ? i : 2*n - 1 - i - 1;
+            minDist = minDist < j ? minDist : j;
+            minDist = minDist < 2*n - 1 - j - 1 ? minDist : 2*n - 1 - j - 1;
+            
+            // Fill the cell with n - minDist
+            matrix[i][j] = n - minDist;
+        }
+    }
+    
+    // Printing the matrix
+    for (i = 0; i < 2*n - 1; i++) {
+        for (j = 0; j < 2*n - 1; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Print the sum and difference of both integers separated by a space on the first line, and the sum and difference of both float (scaled to  decimal place) separated by a space on the second line.
+
+CODE :
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main()
+{
+	int int1, int2;
+    float float1, float2;
+
+    // Input two integers
+    printf("Enter two integers separated by space: ");
+    scanf("%d %d", &int1, &int2);
+
+    // Input two floats
+    printf("Enter two floats separated by space: ");
+    scanf("%f %f", &float1, &float2);
+
+    // Calculate sums and differences
+    int sum_int = int1 + int2;
+    int diff_int = int1 - int2;
+    float sum_float = float1 + float2;
+    float diff_float = float1 - float2;
+
+    // Print results
+    printf("Sum and Difference of integers: %d %d\n", sum_int, diff_int);
+    printf("Sum and Difference of floats (scaled to 1 decimal place): %.1f %.1f\n", sum_float, diff_float);
+
+    
+    return 0;
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+This challenge will help you learn the concept of recursion.
+
+A function that calls itself is known as a recursive function. The C programming language supports recursion. But while using recursion, one needs to be careful to define an exit condition from the function, otherwise it will go into an infinite loop.
+
+To prevent infinite recursion,  statement (or similar approach) can be used where one branch makes the recursive call and other doesn't.
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+//Complete the following function.
+
+int find_nth_term(int n, int a, int b, int c) {
+    if (n == 1) {
+        return a;
+    } else if (n == 2) {
+        return b;
+    } else if (n == 3) {
+        return c;
+    } else {
+        // Using recursion to calculate the nth term
+        return find_nth_term(n-1, a, b, c) + find_nth_term(n-2, a, b, c) + find_nth_term(n-3, a, b, c);
+    }
+}
+
+int main() {
+    int n, a, b, c;
+  
+    scanf("%d %d %d %d", &n, &a, &b, &c);
+    int ans = find_nth_term(n, a, b, c);
+ 
+    printf("%d", ans); 
+    return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+You are transporting some boxes through a tunnel, where each box is a parallelepiped, and is characterized by its length, width and height.
+
+The height of the tunnel  feet and the width can be assumed to be infinite. A box can be carried through the tunnel only if its height is strictly less than the tunnel's height. Find the volume of each box that can be successfully transported to the other end of the tunnel. Note: Boxes cannot be rotated.
+
+CODE :
+
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX_HEIGHT 41
+
+struct box
+{
+	/**
+	* Define three fields of type int: length, width and height
+	*/
+};
+
+typedef struct box box;
+
+int get_volume(box b) {
+	/**
+	* Return the volume of the box
+	*/
+}
+
+int is_lower_than_max_height(box b) {
+	/**
+	* Return 1 if the box's height is lower than MAX_HEIGHT and 0 otherwise
+	*/
+}
+
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	box *boxes = malloc(n * sizeof(box));
+	for (int i = 0; i < n; i++) {
+		scanf("%d%d%d", &boxes[i].length, &boxes[i].width, &boxes[i].height);
+	}
+	for (int i = 0; i < n; i++) {
+		if (is_lower_than_max_height(boxes[i])) {
+			printf("%d\n", get_volume(boxes[i]));
+		}
+	}
+	return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+You are given  triangles, specifically, their sides ,  and . Print them in the same style but sorted by their areas from the smallest one to the largest one. It is guaranteed that all the areas are different.
+
+CODE :
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+struct triangle
+{
+	int a;
+	int b;
+	int c;
+};
+
+typedef struct triangle triangle;
+void sort_by_area(triangle* tr, int n) {
+	/**
+	* Sort an array a of the length n
+	*/
+}
+
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	triangle *tr = malloc(n * sizeof(triangle));
+	for (int i = 0; i < n; i++) {
+		scanf("%d%d%d", &tr[i].a, &tr[i].b, &tr[i].c);
+	}
+	sort_by_area(tr, n);
+	for (int i = 0; i < n; i++) {
+		printf("%d %d %d\n", tr[i].a, tr[i].b, tr[i].c);
+	}
+	return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+In this challenge, you will learn the usage of the for loop, which is a programming language statement which allows code to be executed until a terminal condition is met. They can even repeat forever if the terminal condition is never met.
+
+CODE :
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() 
+{
+    int a, b;
+    scanf("%d\n%d", &a, &b);
+    
+    // Loop through numbers from a to b (inclusive) and print each number
+    for (int i = a; i <= b; i++) {
+        if (i == 1) {
+            printf("one\n");
+        } else if (i == 2) {
+            printf("two\n");
+        } else if (i == 3) {
+            printf("three\n");
+        } else if (i == 4) {
+            printf("four\n");
+        } else if (i == 5) {
+            printf("five\n");
+        } else if (i == 6) {
+            printf("six\n");
+        } else if (i == 7) {
+            printf("seven\n");
+        } else if (i == 8) {
+            printf("eight\n");
+        } else if (i == 9) {
+            printf("nine\n");
+        } else {
+            if (i % 2 == 0) {
+                printf("even\n");
+            } else {
+                printf("odd\n");
+            }
+        }
+    }
+
+    return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+You are given an array of integers, , denoting the marks scored by students in a class.
+
+The alternating elements , ,  and so on denote the marks of boys.
+Similarly, , ,  and so on denote the marks of girls.
+The array name, , works as a pointer which stores the base address of that array. In other words,  contains the address where  is stored in the memory.
+
+For example, let  and  stores 0x7fff9575c05f. Then, 0x7fff9575c05f is the memory address of.
+
+CODE :
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+//Complete the following function.
+
+int marks_summation(int* marks, int number_of_students, char gender) {
+  //Write your code here.
+}
+int main() {
+    int number_of_students;
+    char gender;
+    int sum;
+  
+    scanf("%d", &number_of_students);
+    int *marks = (int *) malloc(number_of_students * sizeof (int));
+ 
+    for (int student = 0; student < number_of_students; student++) {
+        scanf("%d", (marks + student));
+    }
+    
+    scanf(" %c", &gender);
+    sum = marks_summation(marks, number_of_students, gender);
+    printf("%d", sum);
+    free(marks);
+ 
+    return 0;
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+if and else are two of the most frequently used conditionals in C/C++, and they enable you to execute zero or one conditional statement among many such dependent conditional statements. We use them in the following ways:
+
+CODE :
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char* readline();
+
+int main() {
+    char* n_endptr;
+    char* n_str = readline();
+    int n = strtol(n_str, &n_endptr, 10);
+
+    if (n_endptr == n_str || *n_endptr != '\0') {
+        exit(EXIT_FAILURE);
+    }
+
+    if (n >= 1 && n <= 9) {
+        // Print the corresponding English word
+        if (n == 1) {
+            printf("one");
+        } else if (n == 2) {
+            printf("two");
+        } else if (n == 3) {
+            printf("three");
+        } else if (n == 4) {
+            printf("four");
+        } else if (n == 5) {
+            printf("five");
+        } else if (n == 6) {
+            printf("six");
+        } else if (n == 7) {
+            printf("seven");
+        } else if (n == 8) {
+            printf("eight");
+        } else if (n == 9) {
+            printf("nine");
+        }
+    } else if (n > 9) {
+        // Print "Greater than 9" if n is greater than 9
+        printf("Greater than 9");
+    }
+
+    return 0;
+}
+
+char* readline() {
+    size_t alloc_length = 1024;
+    size_t data_length = 0;
+    char* data = malloc(alloc_length);
+
+    while (1) {
+        char* cursor = data + data_length;
+        char* line = fgets(cursor, alloc_length - data_length, stdin);
+
+        if (!line) break;
+
+        data_length += strlen(cursor);
+
+        if (data_length < alloc_length - 1 || data[data_length - 1] == '\n') break;
+
+        size_t new_length = alloc_length << 1;
+        data = realloc(data, new_length);
+
+        if (!data) break;
+
+        alloc_length = new_length;
+    }
+
+    if (data[data_length - 1] == '\n') {
+        data[data_length - 1] = '\0';
+    }
+
+    data = realloc(data, data_length);
+
+    return data;
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Print a pattern of numbers from 1 to n as shown below. Each of the numbers is separated by a single space.
+
+CODE :
+
+#include <stdio.h>
+
+int main() {
+    int n;
+    printf("Enter the value of n: ");
+    scanf("%d", &n);
+    
+    int matrix[2*n-1][2*n-1];
+    int i, j;
+    
+    // Filling the matrix
+    for (i = 0; i < 2*n - 1; i++) {
+        for (j = 0; j < 2*n - 1; j++) {
+            // Determine the minimum distance to the nearest boundary
+            int minDist = i < 2*n - 1 - i ? i : 2*n - 1 - i - 1;
+            minDist = minDist < j ? minDist : j;
+            minDist = minDist < 2*n - 1 - j - 1 ? minDist : 2*n - 1 - j - 1;
+            
+            // Fill the cell with n - minDist
+            matrix[i][j] = n - minDist;
+        }
+    }
+    
+    // Printing the matrix
+    for (i = 0; i < 2*n - 1; i++) {
+        for (j = 0; j < 2*n - 1; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Print the sum and difference of both integers separated by a space on the first line, and the sum and difference of both float (scaled to  decimal place) separated by a space on the second line.
+
+CODE :
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main()
+{
+	int int1, int2;
+    float float1, float2;
+
+    // Input two integers
+    printf("Enter two integers separated by space: ");
+    scanf("%d %d", &int1, &int2);
+
+    // Input two floats
+    printf("Enter two floats separated by space: ");
+    scanf("%f %f", &float1, &float2);
+
+    // Calculate sums and differences
+    int sum_int = int1 + int2;
+    int diff_int = int1 - int2;
+    float sum_float = float1 + float2;
+    float diff_float = float1 - float2;
+
+    // Print results
+    printf("Sum and Difference of integers: %d %d\n", sum_int, diff_int);
+    printf("Sum and Difference of floats (scaled to 1 decimal place): %.1f %.1f\n", sum_float, diff_float);
+
+    
+    return 0;
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+This challenge will help you learn the concept of recursion.
+
+A function that calls itself is known as a recursive function. The C programming language supports recursion. But while using recursion, one needs to be careful to define an exit condition from the function, otherwise it will go into an infinite loop.
+
+To prevent infinite recursion,  statement (or similar approach) can be used where one branch makes the recursive call and other doesn't.
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+//Complete the following function.
+
+int find_nth_term(int n, int a, int b, int c) {
+    if (n == 1) {
+        return a;
+    } else if (n == 2) {
+        return b;
+    } else if (n == 3) {
+        return c;
+    } else {
+        // Using recursion to calculate the nth term
+        return find_nth_term(n-1, a, b, c) + find_nth_term(n-2, a, b, c) + find_nth_term(n-3, a, b, c);
+    }
+}
+
+int main() {
+    int n, a, b, c;
+  
+    scanf("%d %d %d %d", &n, &a, &b, &c);
+    int ans = find_nth_term(n, a, b, c);
+ 
+    printf("%d", ans); 
+    return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+You are transporting some boxes through a tunnel, where each box is a parallelepiped, and is characterized by its length, width and height.
+
+The height of the tunnel  feet and the width can be assumed to be infinite. A box can be carried through the tunnel only if its height is strictly less than the tunnel's height. Find the volume of each box that can be successfully transported to the other end of the tunnel. Note: Boxes cannot be rotated.
+
+CODE :
+
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX_HEIGHT 41
+
+struct box
+{
+	/**
+	* Define three fields of type int: length, width and height
+	*/
+};
+
+typedef struct box box;
+
+int get_volume(box b) {
+	/**
+	* Return the volume of the box
+	*/
+}
+
+int is_lower_than_max_height(box b) {
+	/**
+	* Return 1 if the box's height is lower than MAX_HEIGHT and 0 otherwise
+	*/
+}
+
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	box *boxes = malloc(n * sizeof(box));
+	for (int i = 0; i < n; i++) {
+		scanf("%d%d%d", &boxes[i].length, &boxes[i].width, &boxes[i].height);
+	}
+	for (int i = 0; i < n; i++) {
+		if (is_lower_than_max_height(boxes[i])) {
+			printf("%d\n", get_volume(boxes[i]));
+		}
+	}
+	return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+You are given  triangles, specifically, their sides ,  and . Print them in the same style but sorted by their areas from the smallest one to the largest one. It is guaranteed that all the areas are different.
+
+CODE :
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+struct triangle
+{
+	int a;
+	int b;
+	int c;
+};
+
+typedef struct triangle triangle;
+void sort_by_area(triangle* tr, int n) {
+	/**
+	* Sort an array a of the length n
+	*/
+}
+
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	triangle *tr = malloc(n * sizeof(triangle));
+	for (int i = 0; i < n; i++) {
+		scanf("%d%d%d", &tr[i].a, &tr[i].b, &tr[i].c);
+	}
+	sort_by_area(tr, n);
+	for (int i = 0; i < n; i++) {
+		printf("%d %d %d\n", tr[i].a, tr[i].b, tr[i].c);
+	}
+	return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+In this challenge, you will learn the usage of the for loop, which is a programming language statement which allows code to be executed until a terminal condition is met. They can even repeat forever if the terminal condition is never met.
+
+CODE :
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() 
+{
+    int a, b;
+    scanf("%d\n%d", &a, &b);
+    
+    // Loop through numbers from a to b (inclusive) and print each number
+    for (int i = a; i <= b; i++) {
+        if (i == 1) {
+            printf("one\n");
+        } else if (i == 2) {
+            printf("two\n");
+        } else if (i == 3) {
+            printf("three\n");
+        } else if (i == 4) {
+            printf("four\n");
+        } else if (i == 5) {
+            printf("five\n");
+        } else if (i == 6) {
+            printf("six\n");
+        } else if (i == 7) {
+            printf("seven\n");
+        } else if (i == 8) {
+            printf("eight\n");
+        } else if (i == 9) {
+            printf("nine\n");
+        } else {
+            if (i % 2 == 0) {
+                printf("even\n");
+            } else {
+                printf("odd\n");
+            }
+        }
+    }
+
+    return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+You are given an array of integers, , denoting the marks scored by students in a class.
+
+The alternating elements , ,  and so on denote the marks of boys.
+Similarly, , ,  and so on denote the marks of girls.
+The array name, , works as a pointer which stores the base address of that array. In other words,  contains the address where  is stored in the memory.
+
+For example, let  and  stores 0x7fff9575c05f. Then, 0x7fff9575c05f is the memory address of.
+
+CODE :
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+//Complete the following function.
+
+int marks_summation(int* marks, int number_of_students, char gender) {
+  //Write your code here.
+}
+int main() {
+    int number_of_students;
+    char gender;
+    int sum;
+  
+    scanf("%d", &number_of_students);
+    int *marks = (int *) malloc(number_of_students * sizeof (int));
+ 
+    for (int student = 0; student < number_of_students; student++) {
+        scanf("%d", (marks + student));
+    }
+    
+    scanf(" %c", &gender);
+    sum = marks_summation(marks, number_of_students, gender);
+    printf("%d", sum);
+    free(marks);
+ 
+    return 0;
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+if and else are two of the most frequently used conditionals in C/C++, and they enable you to execute zero or one conditional statement among many such dependent conditional statements. We use them in the following ways:
+
+CODE :
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char* readline();
+
+int main() {
+    char* n_endptr;
+    char* n_str = readline();
+    int n = strtol(n_str, &n_endptr, 10);
+
+    if (n_endptr == n_str || *n_endptr != '\0') {
+        exit(EXIT_FAILURE);
+    }
+
+    if (n >= 1 && n <= 9) {
+        // Print the corresponding English word
+        if (n == 1) {
+            printf("one");
+        } else if (n == 2) {
+            printf("two");
+        } else if (n == 3) {
+            printf("three");
+        } else if (n == 4) {
+            printf("four");
+        } else if (n == 5) {
+            printf("five");
+        } else if (n == 6) {
+            printf("six");
+        } else if (n == 7) {
+            printf("seven");
+        } else if (n == 8) {
+            printf("eight");
+        } else if (n == 9) {
+            printf("nine");
+        }
+    } else if (n > 9) {
+        // Print "Greater than 9" if n is greater than 9
+        printf("Greater than 9");
+    }
+
+    return 0;
+}
+
+char* readline() {
+    size_t alloc_length = 1024;
+    size_t data_length = 0;
+    char* data = malloc(alloc_length);
+
+    while (1) {
+        char* cursor = data + data_length;
+        char* line = fgets(cursor, alloc_length - data_length, stdin);
+
+        if (!line) break;
+
+        data_length += strlen(cursor);
+
+        if (data_length < alloc_length - 1 || data[data_length - 1] == '\n') break;
+
+        size_t new_length = alloc_length << 1;
+        data = realloc(data, new_length);
+
+        if (!data) break;
+
+        alloc_length = new_length;
+    }
+
+    if (data[data_length - 1] == '\n') {
+        data[data_length - 1] = '\0';
+    }
+
+    data = realloc(data, data_length);
+
+    return data;
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
